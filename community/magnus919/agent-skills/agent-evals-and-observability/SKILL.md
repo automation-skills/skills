@@ -1,0 +1,122 @@
+---
+name: agent-evals-and-observability
+description: >-
+  Design, run, review, or release framework- and vendor-neutral evaluations and
+  observability for AI agents. Use when defining agent evals, datasets, graders,
+  trajectory review, monitor independence, oversight quality, regression analysis,
+  release gates, production traces, or
+  privacy-aware telemetry. Covers task and trajectory contracts, statistical comparisons,
+  and incident-to-case learning; route framework implementation to pydanticai or langgraph
+  when needed. Do not use this skill for unrelated requests; route to the nearest named
+  specialist.
+license: MIT
+compatibility: No runtime dependency. Host-, framework-, model-, and telemetry-backend-neutral methodology.
+metadata:
+  source: "Curated from primary and official sources listed in references/source-index.md; checked 2026-07-13"
+---
+
+# Agent Evals and Observability
+
+Evaluation asks whether behavior meets a defined criterion on a declared dataset or production sample. Observability supplies traces, logs, metrics, correlations, and diagnostic context. Use both; neither proves what the other does.
+
+## Multi-agent evaluation boundary
+
+Use [multi-agent-coordination](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/multi-agent-coordination/SKILL.md) to define the
+team's ownership, communication, intent and integration contracts; return here
+for comparable datasets, graders, trajectory evidence and uncertainty. Evaluate
+both individual and combined behavior. Add cases for constraint loss at synthesis,
+peer approval outside scope, stale handoffs and shared-practice recurrence.
+
+Measure coordination activity alongside accepted integrated outcomes, review
+cost and task mix. Rising messages or approvals with flat delivery is a diagnostic
+signal, not proof that checks should be removed. Necessary high-assurance review
+is a near miss, not a detector failure. A verified answer cannot compensate for
+an authority violation. Do not claim a universal ceremony threshold.
+
+## Workflow
+
+1. Define the decision, risk, task contract, trajectory contract, and unacceptable outcomes. Select evidence by harm, reversibility, and deployment stage, not a staged completeness scale.
+2. Create an immutable dataset version and manifest before comparing versions. Declare provenance, rights/consent, slices, fixtures, expected side effects, contamination risk, limitations, retention, and changelog.
+3. Select complementary graders that observe the claimed property. Use deterministic checks for observable mechanics; use execution/environment checks for state and side effects; use human, model-judge, pairwise/ranking, domain, and safety review where appropriate.
+4. Run the candidate and baseline under comparable conditions. Preserve run configuration, stochastic repeats where variability affects the decision, failures/timeouts, and trajectory evidence.
+5. Report a multidimensional profile and uncertainty. Use paired comparisons where possible; inspect slices, missingness, base rates, confounders, effect sizes, and multiple comparisons. Non-significance is not equivalence.
+6. Apply a risk-tiered release gate: hard safety, privacy, authorization, and side-effect invariants cannot be averaged away. Record authority, insufficient-evidence outcomes, rollback, and follow-up. Load [release-engineering](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/release-engineering/SKILL.md) when this evidence must be incorporated into artifact promotion, deployment, rollback, or a broader release train.
+7. Instrument production with minimized, redacted telemetry. Feed verified incidents and near misses into cases after consent, transformation, and contamination review.
+
+When an evaluation needs intervention detail, keep the existing aggregate count
+separate from optional typed events. Absence of event detail means it was not
+collected; it does not mean zero. Collect only fields needed for the question,
+exclude raw messages and hidden reasoning by default, and do not treat lower
+counts alone as success. See [trajectory review](references/trajectory-review.md#optional-intervention-events).
+
+Stop when the supported decision, evidence gaps, residual risks, and responsible owner are recorded. Escalate rather than infer a pass when required evidence is unavailable or conflicts.
+
+## Load By Need
+
+| Need | Load |
+|---|---|
+| Idle-agent capacity claims, event interleavings, callback recovery or hibernation traces | [event-runtime-evaluation](references/event-runtime-evaluation.md) |
+| Compare task-relevant discovery, external artifacts, delegated consumption, or fresh-session recurrence | [references/agent-interface-enrichment.md](references/agent-interface-enrichment.md) |
+| Validate a lesson candidate before promotion and check recurrence | [references/lesson-validation.md](references/lesson-validation.md) |
+| Choose evaluation evidence and contracts | [references/evaluation-design.md](references/evaluation-design.md) |
+| Separate performance, diagnostic, and replay evidence; connect offline to online measures | [references/evidence-modes-and-metric-mirrors.md](references/evidence-modes-and-metric-mirrors.md) |
+| Build immutable cases, fixtures, and provenance | [references/datasets.md](references/datasets.md) |
+| Select or calibrate graders | [references/graders.md](references/graders.md) |
+| Evaluate monitor independence, correlated failures, detection, or escalation delivery | [references/monitor-quality.md](references/monitor-quality.md) and [templates/monitor-assessment.md](templates/monitor-assessment.md) |
+| Validate judge stability, abstention, and escalation | [references/judge-stability.md](references/judge-stability.md) |
+| Check evidence cherry-picking, overreach, or bounded in-workflow probes | [references/grounding-probes.md](references/grounding-probes.md) |
+| Provide requested machine-readable evidence or join multiple evaluation artifacts | [references/decision-audit-record.md](references/decision-audit-record.md) and [templates/decision-audit-record.json](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/agent-evals-and-observability/templates/decision-audit-record.json) |
+| Evaluate grounded claims and attribute RAG failures | [references/grounding-attribution.md](references/grounding-attribution.md) |
+| Define measures or compare runs | [references/metrics-and-statistics.md](references/metrics-and-statistics.md) |
+| Evaluate a bounded Choice/Score/Noul decision model or GLiNER classifier inside an agent | [system-one](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/system-one/SKILL.md) for its question contract, held-out labels, calibration where probabilities exist, and model-level latency; use this skill for the agent's end-to-end task and trajectory evidence |
+| Review tools, state, recovery, or side effects | [references/trajectory-review.md](references/trajectory-review.md) |
+| Record optional, privacy-bounded human intervention detail | [references/trajectory-review.md#optional-intervention-events](references/trajectory-review.md#optional-intervention-events) |
+| Triage a regression or decide release readiness | [references/regression-and-release.md](references/regression-and-release.md) |
+| Hand off a self-service eval submission, isolated rerun or incomplete report | [references/self-service-eval-journey.md](references/self-service-eval-journey.md) |
+| Design traces, logs, metrics, or privacy controls | [references/production-observability.md](references/production-observability.md) |
+| Interoperate with OpenTelemetry | [references/opentelemetry-genai.md](references/opentelemetry-genai.md) |
+| Need framework-specific implementation | [references/framework-routing.md](references/framework-routing.md) |
+| Exercise the methodology with safe probes | [references/synthetic-scenarios.md](references/synthetic-scenarios.md) |
+| Benchmark an agent's Supabase task competence with the official harness | [supabase agent evals reference](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/supabase/references/agent-evals.md) |
+| Verify a source claim or status | [references/source-index.md](references/source-index.md) |
+
+## Templates
+
+Use [templates/eval-plan.md](templates/eval-plan.md), [templates/interface-enrichment-comparison.md](templates/interface-enrichment-comparison.md), [templates/dataset-manifest.md](templates/dataset-manifest.md), [templates/grader-specification.md](templates/grader-specification.md), [templates/trace-review.md](templates/trace-review.md), [templates/run-report.md](templates/run-report.md), [templates/release-gate.md](templates/release-gate.md), and [templates/metric-mirror.md](templates/metric-mirror.md). They are decision records, not checklists that manufacture evidence.
+
+Use grounding probes only when the decision depends on evidence-backed claims. Check material qualifications and whether evidence supports the proposed action, not just the quoted sentence. Preserve separate findings, probe errors, and unknown outcomes; a probe score cannot authorize action.
+
+## Monitor and oversight evaluation
+
+Evaluate the supervisor as well as the agent. Load the monitor-quality reference
+when the decision depends on detecting conduct violations, monitor independence,
+or reliable escalation. Keep agent behavior, monitor detection, and delivered
+escalation as three separately evidenced outcomes. A task-correct result can still
+violate its trajectory contract; a raised alert can still fail to reach its owner.
+Self-assessment is diagnostic testimony, never the sole oracle for the agent's
+conduct. Different models alone do not establish independent oversight.
+
+## Protected-control evidence
+
+For attempts to alter supervision, load
+[control-integrity evaluation](references/control-integrity-evaluation.md).
+The controlled agent is neither sole approver nor sole evidence source. Evaluator
+datasets, labels, oracles, and gate configuration are protected assets; editing them
+to manufacture a pass invalidates the result. Missing, degraded, redirected, or
+suppressed mandatory controls are control-integrity incidents. Assess task success,
+conduct, control state, and escalation separately, using independent effect and
+configuration evidence. Route runtime hold/containment to agent-production-operations
+and rights or exceptions to ai-governance.
+
+## Guardrails
+
+- Do not use a scalar score, keyword hit, schema validation, or repeated output as proof beyond the property it directly observes.
+- Do not capture prompts, outputs, tool arguments, intermediate reasoning, credentials, or personal data by default. Minimize before export, redact early, restrict access, set retention/deletion paths, and prepare incident response.
+- Do not treat human judgment as definitive truth. Human and model graders require explicit rubrics, calibration, disagreement analysis, and revalidation when conditions change.
+- Keep prevalence-oriented production samples separate from risk-enriched challenge cases. Do not silently reweight either into the other.
+
+## When Not To Use
+
+Use [systematic-debugging](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/systematic-debugging/SKILL.md) to investigate one active defect before proposing fixes. Use [verification-methodology](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/verification-methodology/SKILL.md) for general evidence-backed completion claims, [secure-software-engineering](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/secure-software-engineering/SKILL.md) to design preventive controls, and framework skills for SDK-specific code. To benchmark an agent's competence on Supabase tasks with the official scored scenarios, use the [supabase agent evals reference](https://github.com/magnus919/agent-skills/blob/cb581ffec17d3bb0aee2cf605716d107c6e378ad/supabase/references/agent-evals.md) — this skill covers methodology, not a named harness.
+
+<!-- Modified by Automation Skills on 2026-11-24: relative links to files that were not copied now point to the original repository. -->

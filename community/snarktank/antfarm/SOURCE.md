@@ -1,0 +1,9 @@
+# Source
+
+- **Author:** Ryan Carson (GitHub: [snarktank](https://github.com/snarktank))
+- **Original repository:** https://github.com/snarktank/antfarm
+- **Commit imported:** `a442ad7dcb8cf8746175cc4a2e2dcafd501156cf` on 2026-11-24
+- **License:** MIT (full text in LICENSE)
+- **Imported:** the Markdown files of 1 skill folder about automation and integration. Scripts, assets and other files were not copied; get them from the original repository.
+
+These files are the author's work, copied unchanged under their license. They have not been reviewed against this library's rules (vendor neutrality, safety gates). The author is credited here and keeps all rights their license reserves.
